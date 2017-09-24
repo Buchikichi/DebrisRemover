@@ -1,0 +1,25 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="DebrisRemoverApp.MainWindow"
+        mc:Ignorable="d"
+        Title="DebrisRemover" Height="480" Width="640" MinWidth="640" MinHeight="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="ScanPathTextBox" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="577" FontSize="18"
+                 Text="{Binding ScanPath}">
+        </TextBox>
+        <Button x:Name="ChooseDirectoryButton" Content="…" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
+        <Button x:Name="RemoveButton" Content="削除" HorizontalAlignment="Left" Margin="443,412,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Background="#FFFF9696"/>
+        <Button x:Name="ExitButton" Content="終了" HorizontalAlignment="Left" Margin="547,412,0,0" VerticalAlignment="Top" Width="75" FontSize="18" IsCancel="True"/>
+        <ListBox HorizontalAlignment="Left" Height="362" Margin="10,45,0,0" VerticalAlignment="Top" Width="612"
+                  ItemsSource="{Binding FileList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
