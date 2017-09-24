@@ -53,12 +53,13 @@ namespace DebrisRemoverApp
 
         private List<string> ListTarget()
         {
-            List<string> list = new List<string>();
-            var dirList = Directory.EnumerateDirectories(model.ScanPath, "*", SearchOption.AllDirectories);
+            var list = new List<string>();
+            var dirList = new List<string>() { model.ScanPath };
 
+            dirList.AddRange(Directory.EnumerateDirectories(model.ScanPath, "*", SearchOption.AllDirectories));
             foreach (var dir in dirList)
             {
-                var filelist = Directory.EnumerateFiles(dir);
+                var filelist = Directory.EnumerateFiles(dir, "*");
 
                 foreach (var filename in filelist)
                 {
@@ -98,6 +99,7 @@ namespace DebrisRemoverApp
                 if (IsDeletionTarget(target))
                 {
                     File.Delete(target);
+                    model.AddFile(target + "*");
                     continue;
                 }
                 model.AddFile(target);
